@@ -2,6 +2,37 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const Formulario = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  const tareasLocalstorage = JSON.parse(localStorage.getItem('tareasKey')) || [];
+
+  const [tareas, setTareas] = useState(tareasLocalstorage);
+  /* console.log(tareas.data); */
+
+  const posteriorValidacion = (data) => {
+    setTareas([...tareas, data.tarea]);
+
+    reset();
+  };
+
+  useEffect(() => {
+    
+    localStorage.setItem('tareasKey', JSON.stringify(tareas))
+    
+  }, [tareas]);
+
+
+  const borrarTarea = (nombreTarea) => {
+
+    const tareaFiltradas = tareas.filter((ItemTarea) => ItemTarea !== nombreTarea);
+    setTareas(tareaFiltradas);
+  }
+
   return (
     <div className="container my-5">
       <Form.Group className="mb-3 d-flex justify-content-between" controlId="formBasicEmail">
