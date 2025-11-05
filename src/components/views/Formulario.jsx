@@ -2,6 +2,8 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import ListaTarea from './ListaTarea';
 import { useForm } from "react-hook-form"
+import { useEffect, useState } from "react";
+import ItemTarea from "./ItemTarea";
 
 const Formulario = () => {
   const {
@@ -38,7 +40,8 @@ const Formulario = () => {
   return (
     <div className="container my-5">
       <Form onSubmit={handleSubmit(posteriorValidacion)}> 
-      <Form.Group className="mb-3 d-flex justify-content-between" controlId="formBasicEmail">
+      <Form.Group className="mb-3 d-flex justify-content-between">
+
         <Form.Control type="text" placeholder="Ingrese una tarea"  {...register("tarea", {
               required: "La tarea es un dato obligatorio",
               minLength: {
@@ -56,11 +59,13 @@ const Formulario = () => {
         </Button>
       </Form.Group>
 
-      <Form className="text-danger"> {errors.tarea?.message} </Form>
-      <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text>
-      <ListaTarea tareas={tareas} borrarTarea={borrarTarea}></ListaTarea>
+      <Form.Text className="text-muted">We'll never share your email with anyone else.</Form.Text> 
+      <Form.Text className="text-danger"> {errors.tarea?.message} </Form.Text> 
+      
       
       </Form>
+
+      <ListaTarea tareas={tareas} borrarTarea={borrarTarea}></ListaTarea>
 
     </div>
   );

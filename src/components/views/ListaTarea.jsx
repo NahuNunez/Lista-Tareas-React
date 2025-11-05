@@ -1,4 +1,4 @@
-import  ListGroup  from "react-bootstrap"
+import  ListGroup  from "react-bootstrap/ListGroup"
 import ItemTarea from "./ItemTarea"
 
 const ListaTarea = ({tareas, borrarTarea}) => {
